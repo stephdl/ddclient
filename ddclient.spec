@@ -1,7 +1,7 @@
 Summary: A client to update host entries on DynDNS like services
 Name: ddclient
-Version: 3.8.1
-Release: 9%{?dist}
+Version: 3.8.3
+Release: 1%{?dist}
 License: GPL
 Group: System Environment/Base
 URL: http://ddclient.sourceforge.net/
@@ -9,7 +9,6 @@ Source0: http://downloads.sourceforge.net/ddclient/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch: noarch
 Requires: perl(IO::Socket::SSL)
-
 %description
 DDclient is a small full featured client requiring only Perl and no
 additional modules. It runs under most UNIX OSes and has been tested
@@ -36,11 +35,11 @@ information.
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}{%{_sbindir},%{_sysconfdir}/ddclient,%{_initdir}}
+mkdir -p %{buildroot}{%{_sbindir},%{_sysconfdir}/ddclient,%{_initrddir}}
 install -p ddclient %{buildroot}%{_sbindir}
 install -p -m 0600 sample-etc_ddclient.conf %{buildroot}%{_sysconfdir}/ddclient/ddclient.conf
 touch %{buildroot}%{_sysconfdir}/ddclient.cache
-install -p sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_initdir}/ddclient
+install -p sample-etc_rc.d_init.d_ddclient.redhat %{buildroot}%{_initrddir}/ddclient
 chmod -x sample*
 mkdir -p %{buildroot}%{_localstatedir}/cache/ddclient
 
@@ -63,10 +62,13 @@ fi
 %dir %{_sysconfdir}/ddclient
 %config(noreplace) %{_sysconfdir}/ddclient/ddclient.conf
 %config(noreplace) %ghost %{_sysconfdir}/ddclient.cache
-%{_initdir}/ddclient
+%{_initrddir}/ddclient
 %{_localstatedir}/cache/ddclient
 
 %changelog
+* Sun Jul 12 2015 stephane de Labrusse <stephdl@de-labrusse.fr> 3.8.3-1.sme
+- update to 3.8.3
+
 * Mon Jan 16 2012 Axel Thimm <Axel.Thimm@ATrpms.net> - 3.8.1-9
 - Update to 3.8.1.
 
