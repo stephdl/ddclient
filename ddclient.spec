@@ -1,6 +1,6 @@
 Summary: A client to update host entries on DynDNS like services
 Name: ddclient
-Version: 3.8.1
+Version: 3.8.3
 Release: 9%{?dist}
 License: GPL
 Group: System Environment/Base
@@ -9,7 +9,7 @@ Source0: http://downloads.sourceforge.net/ddclient/%{name}-%{version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch: noarch
 Requires: perl(IO::Socket::SSL)
-
+Patch0: ddclient-3.8.3.IO::Socket.patch
 %description
 DDclient is a small full featured client requiring only Perl and no
 additional modules. It runs under most UNIX OSes and has been tested
@@ -31,7 +31,7 @@ information.
 
 %prep
 %setup -q
-
+%patch0 -p1
 %build
 
 %install
