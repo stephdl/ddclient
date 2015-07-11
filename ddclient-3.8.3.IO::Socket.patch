@@ -1,0 +1,14 @@
+diff -Nur ddclient-3.8.3.old/ddclient ddclient-3.8.3.new/ddclient
+--- ddclient-3.8.3.old/ddclient	2015-07-12 00:41:43.206529811 +0200
++++ ddclient-3.8.3.new/ddclient	2015-07-12 00:42:52.180498498 +0200
+@@ -24,7 +24,9 @@
+ use strict;
+ use Getopt::Long;
+ use Sys::Hostname;
+-use IO::Socket;
++#use IO::Socket;
++use IO::Socket::INET;
++use IO::Socket::SSL 'inet4';
+ 
+ # my ($VERSION) = q$Revision: 184 $ =~ /(\d+)/;
+ 
